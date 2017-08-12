@@ -1,15 +1,13 @@
 package blog.service;
 
-import java.util.List;
-
-import org.apache.ibatis.session.RowBounds;
-
-import core.common.PageInfo;
-import core.service.IBaseService;
 import blog.dao.Role;
 import blog.dao.User;
 import blog.dto.input.UserEditDetails;
 import blog.dto.output.UserDetails;
+import core.service.IBaseService;
+import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 /**
  * 
@@ -33,11 +31,10 @@ public interface IUserService extends IBaseService<User> {
 	 * 创建新用户
 	 * @param username 用户名
 	 * @param password  密码
-	 * @param des  简介
 	 * @param tel 电话
 	 * @param address 地址
 	 */
-	public void createUser(String username,String password,String des,String tel,String address);
+	public void createUser(String username,String password,String tel,String address);
 	/**
 	 * 获取自己的用户详情
 	 * 

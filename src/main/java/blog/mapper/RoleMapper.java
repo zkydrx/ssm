@@ -1,12 +1,12 @@
 package blog.mapper;
 
-import java.util.List;
-
+import blog.dao.Role;
+import core.mapper.IBaseMapper;
 import org.apache.ibatis.annotations.Param;
 
-import core.mapper.IBaseMapper;
-import blog.dao.Role;
-
+import java.util.List;
+//@Component
+//@Repository
 public interface RoleMapper extends IBaseMapper<Role> {
 	//根据用户id获取其角色信息
    public List<Role> getRoleListByUserId(Integer userId);

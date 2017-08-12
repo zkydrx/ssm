@@ -1,18 +1,5 @@
 package blog.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import blog.dao.Blog;
 import blog.dto.output.BlogDetails;
 import blog.service.IBlogService;
@@ -21,6 +8,13 @@ import core.ajaxResult.AjaxResult;
 import core.controller.BaseController;
 import core.exception.MyException;
 import core.utils.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -83,7 +77,7 @@ public class BlogController extends BaseController {
 	}
 	/**
 	 * 获取博客列表
-	 * @param blogId
+	 * @param
 	 * @param request
 	 * @return
 	 */
@@ -107,7 +101,7 @@ public class BlogController extends BaseController {
 	/**
 	 * 获取博客详情
 	 * @param blogId
-	 * @param request
+	 * @param
 	 * @return
 	 */
     @ResponseBody

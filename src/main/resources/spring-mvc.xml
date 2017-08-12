@@ -11,7 +11,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
     
     <!-- 视图映射设定 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <property name="prefix" value="/pages/"></property>
+    <property name="prefix" value="/"></property>
     <property name="suffix" value=".jsp"></property>
     </bean>
     <!-- 处理静态资源 -->

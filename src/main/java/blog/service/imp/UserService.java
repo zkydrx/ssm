@@ -1,30 +1,24 @@
 package blog.service.imp;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.ibatis.session.RowBounds;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
-import core.common.PageInfo;
-import core.exception.MyException;
-import core.mapper.IBaseMapper;
-import core.service.BaseService;
-import core.utils.MD5Util;
-import core.utils.StringUtil;
 import blog.dao.Role;
 import blog.dao.User;
-import blog.dao.UserRole;
 import blog.dto.input.UserEditDetails;
 import blog.dto.output.UserDetails;
 import blog.mapper.RoleMapper;
 import blog.mapper.UserMapper;
 import blog.mapper.UserRoleMapper;
 import blog.service.IUserService;
+import core.exception.MyException;
+import core.mapper.IBaseMapper;
+import core.service.BaseService;
+import core.utils.MD5Util;
+import core.utils.StringUtil;
+import org.apache.ibatis.session.RowBounds;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -177,7 +171,7 @@ public class UserService extends BaseService<User> implements IUserService {
      * 创建新用户
      */
 	@Override
-	public void createUser(String username, String password, String des,
+	public void createUser(String username, String password,
 			String tel, String address) {
 		if(userMapper.getUserNameCount(username)>0){
 			throw new MyException("该用户名已经存在");
@@ -186,10 +180,9 @@ public class UserService extends BaseService<User> implements IUserService {
 		user.setName(username);
 		user.setPassword(MD5Util.getMD5(password.getBytes()));
 		user.setTel(tel);
-		user.setDes(des);
 		user.setLevel(1);
         user.setAddress(address);
-        userMapper.insertSelective(user);
+        userMapper.insert(user);
 	}
 
 	@Override

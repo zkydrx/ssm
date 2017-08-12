@@ -1,34 +1,24 @@
 package blog.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.collections.map.HashedMap;
-import org.apache.ibatis.session.RowBounds;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
-import core.ajaxResult.AjaxResult;
-import core.common.PageInfo;
-import core.controller.BaseController;
-import core.exception.MyException;
-import core.utils.MD5Util;
-import core.utils.StringUtil;
 import blog.dao.Role;
 import blog.dao.User;
 import blog.dto.input.UserEditDetails;
 import blog.dto.output.UserDetails;
 import blog.service.IUserService;
-import blog.service.imp.UserService;
+import core.ajaxResult.AjaxResult;
+import core.controller.BaseController;
+import core.exception.MyException;
+import core.utils.MD5Util;
+import core.utils.StringUtil;
+import org.apache.ibatis.session.RowBounds;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 
@@ -76,6 +66,17 @@ public class UserController extends BaseController {
 	}
 
 	/**
+	 * 跳转到注册详情页。
+	 * @return
+	 */
+	@RequestMapping(value = "/register",method = RequestMethod.GET)
+	public String register()
+	{
+		return "registerDetail";
+	}
+
+
+	/**
 	 * 会员登录
 	 * 
 	 * @param username
@@ -94,19 +95,27 @@ public class UserController extends BaseController {
 		return AjaxResult.getOK(userDetails);
 	}
 
+	@RequestMapping(value = "/goIndex",method = RequestMethod.GET)
+	public String goIndex()
+	{
+		return "index";
+	}
+
+
 	/**
 	 * 会员注册
 	 * 
-	 * @param username
+	 * @param userName
 	 * @param password
 	 * @return
 	 */
-	@ResponseBody
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
-	public AjaxResult createUserAction(String username, String password,
-			String des, String tel, String address) {
-		userService.createUser(username, password, des, tel, address);
-		return AjaxResult.getOK();
+	public String createUserAction(String userName, String password,
+			String tel, String address) {
+		userService.createUser(userName, password, tel, address);
+		ModelMap modelMap = new ModelMap();
+		modelMap.addAttribute("remark","注册成功");
+		return "redirect:index";
 	}
 
 	/**
